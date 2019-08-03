@@ -16,10 +16,14 @@ export class NotesComponent implements OnInit {
   getNotes(name : string): void {
     
     this.currentStocks = this.noteservice.getNotes(name);
-
-    //Adding to pastStocks
     this.currentStocks.searchTime = (new Date()).toTimeString();
-    this.pastStocks.push(this.currentStocks);
+
+    const newStock: NoteClass = {
+      name: name,
+      prices: this.currentStocks.prices,
+      searchTime: (new Date()).toTimeString()
+    };
+    this.pastStocks.push(newStock);
     
   }
 
